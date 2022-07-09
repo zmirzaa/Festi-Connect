@@ -44,7 +44,7 @@
                                 <div class="d-flex gap-2 w-100 justify-content-between align-items-center">
                                     <div>
                                         <h6 class="mb-0 review"><a href="/show/review/{{review.id}}">{{review.festival}} {{review.year}}</a></h6>
-                                        <p class="mb-0 text-muted">{{review.likesNum}} like(s)</p>
+                                        <p class="mb-0 text-muted">{{review.likersNum}} like(s)</p>
                                         <p class="mb-0 text-muted">{{review.commentsNum}} comment(s)</p>
                                     </div>
                                     <a href="/delete/review/{{review.id}}"class="btn btn-secondary">Delete</a>
@@ -57,7 +57,7 @@
                     <div class="list-group w-auto"> 	
                         <h6 class="text-center fw-bold">your solo alerts</h6>
                         {% for alert in alerts  %}
-                            <div class="list-group-item list-group-item-action d-flex gap-3 py-3 bg-dark" aria-current="true">
+                            <div class="list-group-item d-flex gap-3 py-3 bg-dark" aria-current="true">
                                 <div class="d-flex gap-2 w-100 justify-content-between align-items-center">
                                     <div>
                                         <h6 class="mb-0 list">{{alert.festival}}</h6>
@@ -70,7 +70,6 @@
                     </div>
                 </div>
             </div>
-        </div>
             <a href="https://www.hardsummer.com/"><img src="/static/img/hard.jpeg" class="dash-pics img-fluid rounded" alt="crowd-pic"></a>
             <div class="row py-lg-5"  id="scrollspyHeading2">
                 <div class="d-flex gap-5 justify-content-evenly mb-5 mt-5 text-center">

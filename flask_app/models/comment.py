@@ -12,6 +12,7 @@ class Comment:
         self.review_id = data['review_id']
 
 
+
     @classmethod
     def save(cls, data):
         query = 'INSERT INTO comments ( description, createdAt, updatedAt, user_id, review_id ) VALUES ( %(description)s, NOW(), NOW(), %(user_id)s, %(review_id)s );'
