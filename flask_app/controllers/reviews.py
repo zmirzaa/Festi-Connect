@@ -1,5 +1,7 @@
+from asyncio import DatagramProtocol
+from crypt import methods
 from flask_app import app 
-from flask import render_template, redirect, session, request, flash 
+from flask import render_template, redirect, session, request, flash, url_for
 from flask_app.models.review import Review
 from flask_app.models.user import User
 
@@ -72,7 +74,6 @@ def allReviews():
 
 @app.route('/nonUserReviews')
 def nonUserReviews(): 
-
     return render_template('nonUserReviews.html', reviews=Review.allReviews())
 
 
@@ -82,3 +83,39 @@ def nonShowReview(id):
         'id': id
     }
     return render_template('nonUserShowReview.html', users=User.getAll(), review=Review.getOneReview(data), comments=Review.getReviewComments(data), likes=Review.getLikerWithReview(data))
+
+
+
+@app.route('/searchR', methods=['POST'])
+def searchR(): 
+    return redirect(url_for('searchedNonReviews', festival=request.form['festival']))
+
+
+
+@app.route('/searchedNonReviews/<festival>')
+def searchedNonReviews(festival): 
+    data = {
+        "festival": festival
+    }
+    return render_template('nonUserReviews.html', users=User.getAll(), reviews=Review.searchReview(data))
+
+
+
+@app.route('/searchedReviews/<festival>')
+def searchedReviews(festival): 
+    if 'user_id' not in session: 
+        return redirect('/logout')
+
+    userData = {
+        "id": session['user_id']
+    }
+    data = {
+        "festival": festival
+    }
+    return render_template('reviews.html', user=User.getOne(userData), users=User.getAll(), reviews=Review.searchReview(data))
+
+
+
+@app.route('/searchRev', methods=['POST'])
+def searchRev(): 
+    return redirect(url_for('searchedReviews', festival=request.form['festival']))

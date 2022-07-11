@@ -44,7 +44,7 @@
                                 <div class="d-flex gap-2 w-100 justify-content-between align-items-center">
                                     <div>
                                         <h6 class="mb-0 review"><a href="/show/review/{{review.id}}">{{review.festival}} {{review.year}}</a></h6>
-                                        <p class="mb-0 text-muted">{{review.likersNum}} like(s)</p>
+                                        <p class="mb-0 text-muted">{{review.likesNum}} like(s)</p>
                                         <p class="mb-0 text-muted">{{review.commentsNum}} comment(s)</p>
                                     </div>
                                     <a href="/delete/review/{{review.id}}"class="btn btn-secondary">Delete</a>
@@ -76,8 +76,8 @@
                     <div>
                         <h4>Search Festival Reviews</h4>
                         <h6 class="fw-light"><em>Get tips and be prepared for your next festival</em></h6>
-                        <form class="search-bar mx-auto" action="/searchReview" method="post">
-                            <input type="search" class="search-field" id="festivalName" name="festivalName" placeholder="Festival Name"/>
+                        <form class="search-bar mx-auto" action="/searchRev" method="post">
+                            <input type="search" class="search-field" id="festival" name="festival" placeholder="Festival Name"/>
                             <button type="submit" class="mag-button"><img src="/static/img/search-dark.png" alt="mag-glass" class="mag-glass"></button>
                         </form>
                     </div>
@@ -85,8 +85,8 @@
                     <h4>Search For Solo Festi Alerts</h4>
                     <h6 class="fw-light"><em>Find your next festie bestie!</em></h6>
                     <form class="search-bar mx-auto" action="/searchAlert" method="post">
-                    <input type="search" class="search-field" id="festivalName" name="festivalName" placeholder="Festival Name"/>
-                    <button type="submit" class="mag-button"><img src="/static/img/search-dark.png" alt="mag-glass" class="mag-glass"></button>
+                        <input type="search" class="search-field" id="festival" name="festival" placeholder="Festival Name"/>
+                        <button type="submit" class="mag-button"><img src="/static/img/search-dark.png" alt="mag-glass" class="mag-glass"></button>
                     </form>
                 </div>
             </div>

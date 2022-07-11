@@ -66,3 +66,15 @@ class Alert:
             alert.alerter = user.User(data)
             alerts.append(alert)
         return alerts
+
+
+    
+    @classmethod
+    def searchAlert(cls,data): 
+        query = "SELECT * FROM alerts WHERE festival LIKE %(festival)s ORDER by id DESC;"
+        results = connectToMySQL(cls.db).query_db(query, data)
+        alerts = [] 
+        for a in results:
+            alerts.append(cls(a))
+        return alerts 
+    
