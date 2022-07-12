@@ -61,22 +61,6 @@ def like(id):
     return redirect(f"/show/review/{id}")
 
 
-
-@app.route('/allReviews')
-def allReviews(): 
-    if 'user_id' not in session: 
-        return redirect('/logout')
-    userData = {
-        "id": session['user_id']
-    }
-    return render_template('reviews.html', user=User.getOne(userData), users=User.getAll(), reviews=Review.allReviews())
-
-
-@app.route('/nonUserReviews')
-def nonUserReviews(): 
-    return render_template('nonUserReviews.html', reviews=Review.allReviews())
-
-
 @app.route('/show/non/review/<int:id>')
 def nonShowReview(id): 
     data = {
@@ -92,7 +76,7 @@ def searchR():
 
 
 
-@app.route('/searchedNonReviews/<festival>')
+@app.route('/nonUserReviews/<festival>')
 def searchedNonReviews(festival): 
     data = {
         "festival": festival
@@ -101,7 +85,7 @@ def searchedNonReviews(festival):
 
 
 
-@app.route('/searchedReviews/<festival>')
+@app.route('/allReviews/<festival>')
 def searchedReviews(festival): 
     if 'user_id' not in session: 
         return redirect('/logout')

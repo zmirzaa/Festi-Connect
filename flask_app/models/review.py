@@ -70,18 +70,6 @@ class Review:
             review.comments.append(oneComment) 
         return review
     
-
-    #query to show all reviews with num of likes
-    @classmethod
-    def allReviews(cls): 
-        query = "Select r.id, r.festival, r.year, r.description, r.rating, r.tips, r.createdAt, r.updatedAt, r.user_id, COUNT(l.id) likes FROM reviews r LEFT JOIN likes l ON r.id = l.review_id LEFT JOIN users ON users.id = r.user_id GROUP BY r.id, r.festival, r.year, r.description, r.rating, r.tips, r.createdAt, r.updatedAt, r.user_id;"
-        results = connectToMySQL(cls.db).query_db(query) 
-        reviews = []
-        for row in results: 
-            review = cls(row) 
-            review.likesNum = row['likes']
-            reviews.append(review)
-        return reviews
     
     #query to one review's likes info 
     @classmethod 
@@ -119,9 +107,12 @@ class Review:
 
     @classmethod
     def searchReview(cls,data): 
-        query = "SELECT * FROM reviews WHERE festival LIKE %(festival)s ORDER by id DESC;"
+        query = "Select r.id, r.festival, r.year, r.description, r.rating, r.tips, r.createdAt, r.updatedAt, r.user_id, COUNT(l.id) likes FROM reviews r LEFT JOIN likes l ON r.id = l.review_id LEFT JOIN users ON users.id = r.user_id WHERE festival LIKE %(festival)s GROUP BY r.id, r.festival, r.year, r.description, r.rating, r.tips, r.createdAt, r.updatedAt, r.user_id;"
         results = connectToMySQL(cls.db).query_db(query, data)
-        reviews = [] 
-        for a in results:
-            reviews.append(cls(a))
-        return reviews 
+        reviews = []
+        for row in results: 
+            review = cls(row) 
+            review.likesNum = row['likes']
+            reviews.append(review)
+        return reviews
+    
