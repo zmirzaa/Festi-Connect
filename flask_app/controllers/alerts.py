@@ -2,7 +2,6 @@ from flask_app import app
 from flask import render_template, redirect, session, request, url_for 
 from flask_app.models.alert import Alert
 from flask_app.models.user import User
-from flask_app.models.review import Review
 
 
 @app.route('/addAlert', methods=['POST'])
